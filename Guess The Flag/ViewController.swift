@@ -9,9 +9,37 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var flagImageButton: UIButton!
+    @IBOutlet var flagImageButton2: UIButton!
+    @IBOutlet var flagImageButton3: UIButton!
+    
+    var countries = [String]()
+    var score = 0
+    var correctAnswer = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+       countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
+        
+        flagImageButton.layer.borderWidth = 1
+        flagImageButton2.layer.borderWidth = 1
+        flagImageButton3.layer.borderWidth = 1
+        
+        flagImageButton.layer.borderColor = UIColor.lightGray.cgColor
+        flagImageButton2.layer.borderColor = UIColor.lightGray.cgColor
+        flagImageButton3.layer.borderColor = UIColor.lightGray.cgColor
+        
+        askQuestion()
+    }
+    
+    func askQuestion() {
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
+        flagImageButton.setImage(UIImage(named: countries[0]), for: .normal)
+        flagImageButton2.setImage(UIImage(named: countries[1]), for: .normal)
+        flagImageButton3.setImage(UIImage(named: countries[2]), for: .normal)
+        
+        title = countries[correctAnswer].uppercased()
     }
 
 
